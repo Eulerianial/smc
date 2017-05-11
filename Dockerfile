@@ -22,7 +22,8 @@ RUN \
   apt-get install -y nodejs
 
 # Build and install Sage -- see https://github.com/sagemath/docker-images
-COPY /smc/src/dev/docker/scripts/ /tmp/scripts
+COPY install_sage.sh /tmp/scripts
+COPY post_install_sage.sh /tmp/scripts
 RUN chmod -R +x /tmp/scripts
 
 RUN    adduser --quiet --shell /bin/bash --gecos "Sage user,101,," --disabled-password sage \
