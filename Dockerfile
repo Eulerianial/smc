@@ -32,9 +32,11 @@ RUN    adduser --quiet --shell /bin/bash --gecos "Sage user,101,," --disabled-pa
 # make source checkout target, then run the install script
 # see https://github.com/docker/docker/issues/9547 for the sync
 RUN    mkdir -p /usr/local/
+RUN    chmod +x /tmp/scripts/install_sage.sh
 RUN    /tmp/scripts/install_sage.sh /usr/local/ master && sync
 
-RUN /tmp/scripts/post_install_sage.sh && rm -rf /tmp/* && sync
+RUN    chmod +x /tmp/scripts/post_install_sage.sh
+RUN    /tmp/scripts/post_install_sage.sh && rm -rf /tmp/* && sync
 
 # Build and install PostgreSQL
 RUN \
